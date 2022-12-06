@@ -45,6 +45,7 @@
     "text_submit": "Submit",
     "text_search": "Search",
     "text_select": "Select",
+    "text_rate": "Rate",
     "text_add_cart": "Add to Cart",
     "text_view_cart": "View Cart",
     "text_choose_item": "Choose item",
@@ -69,7 +70,8 @@
     "text_save" : "Save",
     "text_sales" : "Sales",
     "text_state" : "State/Country",
-    "text_downloads": "Downloads"
+    "text_downloads": "Downloads",
+    "text_places": "Places"
   },
   "auth": {
     "text_input_email_address": "Email Address or Username *",
@@ -84,7 +86,7 @@
     "text_facebook": "Sign In with Facebook",
     "text_google": "Sign In with Google",
     "text_have_account": "Don't have an account?",
-    "text_agree_register": "I'd like to receive exclusive offers and style advice by email and sms from Oreo",
+    "text_agree_register": "I'd like to receive exclusive offers and style advice by email and sms from Ezkizi",
     "text_already_account": "Already have an account?",
     "text_description_forgot": "Enter your account email address and we'll send instructions on how to reset your password",
     "text_description_login_mobile": "Login with your phone number",
@@ -199,7 +201,7 @@
     "text_title_1": "Shopping Smart",
     "text_title_2": "Focus UX",
     "text_title_3": "Creative Concept",
-    "text_subtitle_1": "Welcome to OREO Store",
+    "text_subtitle_1": "Welcome to ESKIZI Store",
     "text_subtitle_2": "Personalization of User Experience",
     "text_subtitle_3": "Discovering new horizons"
   },
@@ -230,7 +232,7 @@
     "text_input_old_pass": "Current Password*",
     "text_input_new_pass": "New Password*",
     "text_input_confirm_pass": "Confirm New Password*",
-    "text_password_description": "Your new password must be atleast 6 characters long",
+    "text_password_description": "Your new password must be at least 6 characters long",
     "text_button_password": "Save new password",
 
     "text_input_first_name": "First Name *",
@@ -270,7 +272,7 @@
     "text_privacy_title_2": "2. THIRD PARTY WEBSITES",
     "text_privacy_description_2": "Our Website can contain links to and from the websites of our partner boutiques, advertisers, and affiliates, amongst others. If you follow a link to any of these websites, please note that this Privacy Policy does not apply to those websites. We are not responsible or liable for the privacy policies or practices of those websites, so please check their policies before you submit any personal data to those websites.",
 
-    "text_name_about": "Oreo React Native\nTemplate",
+    "text_name_about": "Eskizi React Native\nTemplate",
     "text_research": "Research",
     "text_about_description": "This Privacy Policy sets out the information that we collect, the reasons for which we collect that information, and how we can use and share that information.",
 
@@ -317,7 +319,7 @@
   "empty": {
     "text_title_category": "No categories added yet!",
     "text_subtitle_category": "Please contact the admin to add categories",
-    "text_title_product": "You don't have any prodycs yet",
+    "text_title_product": "You don't have any products yet",
     "text_subtitle_product": "Please chose another category or change the filter value",
     "text_title_product_no_category": "This category seems to be empty!",
     "text_subtitle_product_no_category": "Please chose another category or change the filter value",
@@ -353,5 +355,11 @@
     "text_change_password_success": "Password updated.",
     "text_download_success": "Download success",
     "text_no_permission_write_file": "You do not have permissions to save the file to your phone"
+  },
+  "places": {
+    "text_rate_this": "Rate this place",
+    "text_write_comment": "Write your comment",
+    "text_placeholder_search": "Search places",
+    "comments": "Comments"
   }
 }

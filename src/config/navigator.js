@@ -60,6 +60,9 @@ export const mainStack = {
   edit_account: 'EditAccountScreen',
   downloads: 'DownloadsScreen',
   page: 'PageScreen',
+
+  places: 'PlacesScreen',
+  place: 'PlaceScreen',
 };
 
 export const rootSwitch = {

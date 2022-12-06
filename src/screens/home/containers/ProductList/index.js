@@ -84,8 +84,10 @@ class ProductList extends Component {
 
   //
   componentDidMount() {
+    console.log('****here');
     // this.fetchData();
     if (this.props.fields) {
+      console.log('****here x2');
       this.getFilter();
     }
   }
@@ -113,6 +115,7 @@ class ProductList extends Component {
   };
 
   fetchData = () => {
+    console.log('******11fetchData');
     const {per_page, include} = this.state;
 
     const {language} = this.props;
@@ -132,16 +135,17 @@ class ProductList extends Component {
 
           // eslint-disable-next-line no-undef
           this.abortController = new AbortController();
-
+          console.log('******222');
           const data = await getProducts(query, {
             signal: this.abortController.signal,
           });
-
+console.log('******111', data);
           this.setState({
             data,
             loading: false,
           });
         } catch (error) {
+          console.log('---fuck', error);
           this.setState({
             loading: false,
           });

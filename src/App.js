@@ -2,7 +2,7 @@
  *
  * Main app
  *
- * App Name:          Oreo fashion
+ * App Name:          Eskizi
  * Author:            Rnlab.io
  *
  * @since             1.0.0
@@ -38,7 +38,6 @@ type Props = {};
 
 class App extends Component<Props> {
   componentDidMount() {
-
     OneSignal.init(APP_ID);
 
     OneSignal.addEventListener('received', this.onReceived);

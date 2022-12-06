@@ -46,6 +46,9 @@ import EditAccount from 'src/screens/profile/edit-account';
 import Downloads from 'src/screens/profile/downloads';
 import Page from 'src/screens/profile/Page';
 
+import Places from 'src/screens/place/places';
+import Place from 'src/screens/place/place';
+
 const Stack = createStackNavigator();
 
 function MainStack() {
@@ -227,6 +230,16 @@ function MainStack() {
         options={{headerShown: false}}
         name={mainStack.page}
         component={Page}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={mainStack.places}
+        component={Places}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={mainStack.place}
+        component={Place}
       />
     </Stack.Navigator>
   );

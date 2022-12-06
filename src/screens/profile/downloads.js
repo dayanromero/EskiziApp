@@ -18,13 +18,12 @@ import {IconHeader, CartIcon, TextHeader} from 'src/containers/HeaderComponent';
 import {margin, padding, borderRadius} from 'src/components/config/spacing';
 import {authSelector} from 'src/modules/auth/selectors';
 import {languageSelector} from 'src/modules/common/selectors';
-import {showMessage} from 'react-native-flash-message';
+// import {showMessage} from 'react-native-flash-message';
 import {homeTabs} from 'src/config/navigator';
 
 import {Row, Col} from 'src/containers/Gird';
 import {getFilesDonwload} from 'src/modules/auth/actions';
 import {lineHeights} from 'src/components/config/fonts';
-import RNFetchBlob from 'rn-fetch-blob';
 import * as Progress from 'react-native-progress';
 import FileViewer from 'react-native-file-viewer';
 
@@ -88,73 +87,72 @@ class DownloadsScreen extends React.Component {
     );
   };
 
-  downloadFile(item, index) {
-    const {t} = this.props;
-    if (!this.state.hasPermission) {
-      showMessage({
-        message: t('notifications:text_no_permission_write_file'),
-        type: 'warning',
-        icon: 'warning',
-      });
-      return;
-    }
-    if (this.state.isDownload) {
-      return;
-    }
-    let dirs = RNFetchBlob.fs.dirs;
-    const arrayStringFileUrl = item.file.file.split('/');
-    var filename =
-      arrayStringFileUrl && arrayStringFileUrl.length
-        ? arrayStringFileUrl[arrayStringFileUrl.length - 1]
-        : '';
-    this.setState({
-      isDownload: true,
-      indexDownload: index,
-    });
-    RNFetchBlob.config({
-      path: `${dirs.DownloadDir}/${filename}`,
-      fileCache: false,
-      addAndroidDownloads: {
-        notification: true,
-        useDownloadManager: true,
-        description: 'TaxiJo Payment Invoice',
-        mime: 'application/pdf',
-        mediaScannable: true,
-        path: `${dirs.DownloadDir}/${filename}`,
-      },
-    })
-      .fetch('GET', item.file.file, {
-        'Cache-Control': 'no-store',
-      })
-      .progress({interval: 200}, (received, total) => {
-        this.setState({
-          progress: received / total,
-        });
-      })
-      .then((res) => {
-        this.setState({
-          progress: 100,
-        });
-        setTimeout(() => {
-          this.openDocument(res.path());
-          showMessage({
-            message: t('notifications:text_download_success'),
-            type: 'success',
-            icon: 'success',
-          });
-          this.setState({isDownload: false, progress: 0, indexDownload: null});
-        }, 500);
-      })
-      .catch((errorMessage, statusCode) => {
-        this.setState({
-          isDownload: false,
-          progress: 0,
-          indexDownload: null,
-        });
-        console.log('error with downloading file', errorMessage);
-      });
-    // 	})
-  }
+  // downloadFile(item, index) {
+  //   const {t} = this.props;
+  //   if (!this.state.hasPermission) {
+  //     showMessage({
+  //       message: t('notifications:text_no_permission_write_file'),
+  //       type: 'warning',
+  //       icon: 'warning',
+  //     });
+  //     return;
+  //   }
+  //   if (this.state.isDownload) {
+  //     return;
+  //   }
+  //   let dirs = ReactNativeBlobUtil.fs.dirs;
+  //   const arrayStringFileUrl = item.file.file.split('/');
+  //   var filename =
+  //     arrayStringFileUrl && arrayStringFileUrl.length
+  //       ? arrayStringFileUrl[arrayStringFileUrl.length - 1]
+  //       : '';
+  //   this.setState({
+  //     isDownload: true,
+  //     indexDownload: index,
+  //   });
+  //   ReactNativeBlobUtil.config({
+  //     path: `${dirs.DownloadDir}/${filename}`,
+  //     fileCache: false,
+  //     addAndroidDownloads: {
+  //       notification: true,
+  //       useDownloadManager: true,
+  //       description: 'TaxiJo Payment Invoice',
+  //       mime: 'application/pdf',
+  //       mediaScannable: true,
+  //       path: `${dirs.DownloadDir}/${filename}`,
+  //     },
+  //   })
+  //     .fetch('GET', item.file.file, {
+  //       'Cache-Control': 'no-store',
+  //     })
+  //     .progress({interval: 200}, (received, total) => {
+  //       this.setState({
+  //         progress: received / total,
+  //       });
+  //     })
+  //     .then((res) => {
+  //       this.setState({
+  //         progress: 100,
+  //       });
+  //       setTimeout(() => {
+  //         this.openDocument(res.path());
+  //         showMessage({
+  //           message: t('notifications:text_download_success'),
+  //           type: 'success',
+  //           icon: 'success',
+  //         });
+  //         this.setState({isDownload: false, progress: 0, indexDownload: null});
+  //       }, 500);
+  //     })
+  //     .catch((errorMessage, statusCode) => {
+  //       this.setState({
+  //         isDownload: false,
+  //         progress: 0,
+  //         indexDownload: null,
+  //       });
+  //       console.log('error with downloading file', errorMessage);
+  //     });
+  // }
 
   openDocument = async (path) => {
     FileViewer.open(path, {
@@ -183,9 +181,7 @@ class DownloadsScreen extends React.Component {
                 {item.access_expires}
               </Text>
             </Col>
-            <TouchableOpacity
-              onPress={() => this.downloadFile(item, index)}
-              activeOpacity={0.6}>
+            <TouchableOpacity activeOpacity={0.6}>
               <Icon name={'download'} size={17} containerStyle={styles.icon} />
             </TouchableOpacity>
           </Row>

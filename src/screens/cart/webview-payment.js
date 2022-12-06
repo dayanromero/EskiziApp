@@ -59,6 +59,7 @@ class WebviewPayment extends Component {
           <Button
             title={t('cart:text_shopping')}
             onPress={this.handleContinue}
+            type={'clear'}
           />
         </Container>
       </ThemedView>

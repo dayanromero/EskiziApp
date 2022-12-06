@@ -63,7 +63,7 @@ class ProductImages extends Component {
         },
         {
           // // Android only:
-          dialogTitle: 'Oreo product',
+          dialogTitle: 'Eskizi product',
           // // iOS only:
           // excludedActivityTypes: [
           //   'com.apple.UIKit.activity.PostToTwitter'

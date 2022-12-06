@@ -23,6 +23,7 @@ export const violet = '#6435C9';
 export const purple = '#A333C8';
 export const pink = '#E03997';
 export const brown = '#A5673F';
+export const whatsapp = '#25d366';
 
 // Export dark theme
 export const darkColors = {
