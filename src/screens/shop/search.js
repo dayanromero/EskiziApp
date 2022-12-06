@@ -132,9 +132,7 @@ class SearchScreen extends React.Component {
               handleProductPage={this.handleProductPage}
             />
           ) : (
-            <SearchRecentItem
-              handleRecentKeyword={this.handleRecentKeyword}
-            />
+            <SearchRecentItem handleRecentKeyword={this.handleRecentKeyword} />
           )}
         </ScrollView>
       </ThemedView>

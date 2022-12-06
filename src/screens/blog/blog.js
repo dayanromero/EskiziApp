@@ -64,7 +64,7 @@ class BlogDetail extends React.Component {
       },
       {
         // // Android only:
-        dialogTitle: 'Oreo post',
+        dialogTitle: 'Eskizi post',
         // // iOS only:
         // excludedActivityTypes: [
         //   'com.apple.UIKit.activity.PostToTwitter'

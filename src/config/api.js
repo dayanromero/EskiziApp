@@ -1,10 +1,12 @@
-export const API = 'https://wc2.rnlab.io';
+export const API = 'https://eskizi.com';
+export const API_ESKIZI = 'https://eskizi.com';
 
-export const CONSUMER_KEY = 'ck_9a40d82e47c124bc1be422682dd93eb25bdb5e3a';
-export const CONSUMER_SECRET = 'cs_01bd2047d4ea33bdb4b6d8f6f034e0e072abdf4a';
+export const CONSUMER_KEY = 'ck_39181e2db20edc0deb7dec4b9153eb819a5b56fd';
+export const CONSUMER_SECRET = 'cs_e9c9995eb7db04aa8caeac7a4749cc6cd1caf5e9';
 
 export default {
   API_ENDPOINT: API,
+  API_ESKIZI,
   CONSUMER_KEY,
   CONSUMER_SECRET,
 };

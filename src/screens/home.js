@@ -1,14 +1,22 @@
 import React from 'react';
+import {
+  ScrollView,
+  View,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  Linking,
+} from 'react-native';
 
 import {connect} from 'react-redux';
-import moment from 'moment';
 import {DrawerActions} from '@react-navigation/native';
 
-import {ScrollView, View, Dimensions} from 'react-native';
-
-import {ThemedView, Header} from 'src/components';
+import {ThemedView, Header, Icon} from 'src/components';
 import {IconHeader, Logo, CartIcon} from 'src/containers/HeaderComponent';
 import ModalHomePopup from 'src/containers/ModalHomePopup';
+import {whatsapp, white} from 'src/components/config/colors';
+
+import {WHATSAPP_NUMBER} from 'src/config/support';
 
 import {fetchCategories} from 'src/modules/category/actions';
 import {categorySelector} from 'src/modules/category/selectors';
@@ -35,6 +43,7 @@ import Button from './home/containers/Button';
 import Vendors from './home/containers/Vendors';
 import Search from './home/containers/Search';
 import Divider from './home/containers/Divider';
+import Places from './home/containers/Places';
 
 const {width} = Dimensions.get('window');
 
@@ -103,6 +112,7 @@ class HomeScreen extends React.Component {
   };
 
   renderContainer(config) {
+    // console.log('***', JSON.stringify(config));
     const Container = containers[config.type];
     if (!Container) {
       return null;
@@ -118,8 +128,7 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    // const { category, product } = this.props;
-    const {config, toggleSidebar, navigation} = this.props;
+    const {config, toggleSidebar, navigation, theme} = this.props;
 
     return (
       <ThemedView isFullView>
@@ -133,19 +142,43 @@ class HomeScreen extends React.Component {
               />
             ) : null
           }
-          centerComponent={<Logo/>}
-          rightComponent={<CartIcon/>}
+          centerComponent={<Logo />}
+          rightComponent={<CartIcon />}
         />
         <ScrollView
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
           {config.map((data) => this.renderContainer(data))}
+          <Places />
         </ScrollView>
-        <ModalHomePopup/>
+        <ModalHomePopup />
+        <Pressable
+          style={styles.supportButton}
+          onPress={() =>
+            Linking.openURL(
+              `whatsapp://send?text=Hola vengo de Eskizi y necesito ayuda!&phone=${WHATSAPP_NUMBER}`,
+            )
+          }>
+          <Icon name={'whatsapp'} type="font-awesome" color={white} size={20} />
+        </Pressable>
       </ThemedView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  supportButton: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+    backgroundColor: whatsapp,
+    borderRadius: 100,
+  },
+});
 
 const mapStateToProps = (state) => {
   return {

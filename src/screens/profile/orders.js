@@ -7,7 +7,7 @@ import Empty from 'src/containers/Empty';
 import {IconHeader, CartIcon, TextHeader} from 'src/containers/HeaderComponent';
 import OrderItem from './order/OrderItem';
 
-import fetch from 'src/utils/fetch';
+import fetch from 'src/utils/fetchEskizi';
 import {authSelector} from 'src/modules/auth/selectors';
 import {languageSelector} from 'src/modules/common/selectors';
 
