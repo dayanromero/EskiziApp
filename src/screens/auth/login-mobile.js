@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import firebase from '@react-native-firebase/app';
 import {withTranslation} from 'react-i18next';
 import trim from 'lodash/trim';
 
@@ -51,17 +50,9 @@ class LoginMobile extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({
-          user,
-        });
-      }
-
-      if (this.state.confirmResult && Platform.OS === 'android') {
-        this.handleLogin(true);
-      }
-    });
+    if (this.state.confirmResult && Platform.OS === 'android') {
+      this.handleLogin(true);
+    }
   }
 
   componentWillUnmount() {
@@ -81,10 +72,6 @@ class LoginMobile extends React.Component {
         this.setState({
           visibleModal: false,
         });
-        const idTokenResult = await firebase
-          .auth()
-          .currentUser.getIdTokenResult();
-        this.props.dispatch(signInWithMobile(idTokenResult.token));
       }
     } catch (e) {
       showMessage({
@@ -123,15 +110,6 @@ class LoginMobile extends React.Component {
         this.handleLogin(true);
         this.setState({
           loading: false,
-        });
-      } else {
-        // Send Verify token
-        const confirmResult = await firebase
-          .auth()
-          .signInWithPhoneNumber(user_phone_number);
-        this.setState({
-          loading: false,
-          confirmResult,
         });
       }
     } catch (e) {

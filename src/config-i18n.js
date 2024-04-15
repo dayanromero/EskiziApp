@@ -4,6 +4,7 @@ import {initReactI18next} from 'react-i18next';
 import languages from './locales';
 
 i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v2',
   fallbackLng: 'en',
   lng: 'es',
 

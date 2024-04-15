@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 
 import {connect} from 'react-redux';
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import compact from 'lodash/compact';
 
 import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import {withNavigation} from '@react-navigation/compat';
 import {withTranslation} from 'react-i18next';
 
 import Container from 'src/containers/Container';
@@ -166,6 +165,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   connect(mapStateToProps),
-  withNavigation,
   withTranslation(),
 )(Vendors);

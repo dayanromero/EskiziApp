@@ -2,7 +2,7 @@ import React from 'react';
 
 import {mainStack} from 'src/config/navigator';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeTabs from './home-tabs';
 import Blogs from 'src/screens/blog/blogs';
@@ -49,7 +49,7 @@ import Page from 'src/screens/profile/Page';
 import Places from 'src/screens/place/places';
 import Place from 'src/screens/place/place';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 function MainStack() {
   return (

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {fromJS, List} from 'immutable';
 import {connect} from 'react-redux';
 import merge from 'lodash/merge';
@@ -109,13 +109,13 @@ class Product extends Component {
       getVariations(product.get('id'), lang, {
         signal: this.abortController.signal,
       })
-        .then((data) => {
+        .then(data => {
           this.setState({
             variations: fromJS(compact(data)),
             loadingVariation: false,
           });
         })
-        .catch((error) => {
+        .catch(error => {
           handleError(error);
           this.setState({
             loadingVariation: false,
@@ -143,7 +143,7 @@ class Product extends Component {
     if (product.get('type') === productType.VARIABLE) {
       const attributeProduct = product
         .get('attributes')
-        .filter((attr) => attr.get('variation'));
+        .filter(attr => attr.get('variation'));
       if (!variation || attributeProduct.size !== variation.length) {
         showMessage({
           message: t('catalog:text_select_variation'),
@@ -162,7 +162,7 @@ class Product extends Component {
       state: {variation_id},
     } = this.props;
     const {product, variations, images} = this.state;
-    const variation = variations.find((v) => v.get('id') === variation_id);
+    const variation = variations.find(v => v.get('id') === variation_id);
 
     if (
       product.get('type') === productType.VARIABLE &&
@@ -186,7 +186,7 @@ class Product extends Component {
       state: {variation_id},
     } = this.props;
     const {product, variations} = this.state;
-    const variation = variations.find((v) => v.get('id') === variation_id);
+    const variation = variations.find(v => v.get('id') === variation_id);
     let price_format = product.get('price_format').toJS();
     let type = product.get('type');
     let p = product;
@@ -283,7 +283,7 @@ class Product extends Component {
       firstImage && firstImage.get('src') ? firstImage.get('src') : '';
     const stock_status = ['instock', 'onbackorder'];
 
-    const variation = variations.find((v) => v.get('id') === variation_id);
+    const variation = variations.find(v => v.get('id') === variation_id);
     const valueCheck = variation && variation.size > 0 ? variation : product;
 
     return (
@@ -471,7 +471,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     attribute: attributeSelector(state),
     dataRating: dataRatingSelector(state),
@@ -487,10 +487,9 @@ const mapStateToProps = (state) => {
 const withReduce = connect(mapStateToProps);
 
 export default compose(
-  withTranslation(),
   withReduce,
   defaultPropsData,
   getSingleData,
   withLoading,
   withAddToCart,
-)(Product);
+)(withTranslation()(Product));

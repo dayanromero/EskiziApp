@@ -1,7 +1,6 @@
 import React from 'react';
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {withTranslation} from 'react-i18next';
-import {withNavigation} from '@react-navigation/compat';
 import {connect} from 'react-redux';
 import {Map} from 'immutable';
 import isEqual from 'lodash/isEqual';
@@ -219,6 +218,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withTranslation(),
-  withNavigation,
   connect(mapStateToProps),
 )(ProductCategory);

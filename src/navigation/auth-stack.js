@@ -2,14 +2,14 @@ import React from 'react';
 
 import {authStack} from 'src/config/navigator';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Login from 'src/screens/auth/login';
 import LoginMobile from 'src/screens/auth/login-mobile';
 import Register from 'src/screens/auth/register';
 import Forgot from 'src/screens/auth/forgot';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 function AuthStack() {
   return (

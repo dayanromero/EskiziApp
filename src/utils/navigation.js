@@ -1,4 +1,4 @@
-import {NavigationActions} from '@react-navigation/compat';
+import {useNavigation} from '@react-navigation/native';
 
 let _navigator;
 
@@ -7,8 +7,9 @@ function setTopLevelNavigator(navigatorRef) {
 }
 
 function navigate(routeName, params = {}) {
+  const navigation = useNavigation();
   _navigator.dispatch(
-    NavigationActions.navigate({
+    navigation.navigate({
       routeName,
       params,
     }),
@@ -16,7 +17,8 @@ function navigate(routeName, params = {}) {
 }
 
 function goBack() {
-  _navigator.dispatch(NavigationActions.back());
+  const navigation = useNavigation();
+  _navigator.dispatch(navigation.goBack());
 }
 
 // add other navigation functions that you need and export them

@@ -5,10 +5,9 @@ import take from 'lodash/take';
 import isEqual from 'lodash/isEqual';
 import split from 'lodash/split';
 
-import {withNavigation} from '@react-navigation/compat';
 import {withTranslation} from 'react-i18next';
 import {connect} from 'react-redux';
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 
 import {mainStack} from 'src/config/navigator';
 import {productListTypes} from 'src/config/product';
@@ -84,10 +83,8 @@ class ProductList extends Component {
 
   //
   componentDidMount() {
-    console.log('****here');
     // this.fetchData();
     if (this.props.fields) {
-      console.log('****here x2');
       this.getFilter();
     }
   }
@@ -115,7 +112,6 @@ class ProductList extends Component {
   };
 
   fetchData = () => {
-    console.log('******11fetchData');
     const {per_page, include} = this.state;
 
     const {language} = this.props;
@@ -135,17 +131,16 @@ class ProductList extends Component {
 
           // eslint-disable-next-line no-undef
           this.abortController = new AbortController();
-          console.log('******222');
+
           const data = await getProducts(query, {
             signal: this.abortController.signal,
           });
-console.log('******111', data);
+
           this.setState({
             data,
             loading: false,
           });
         } catch (error) {
-          console.log('---fuck', error);
           this.setState({
             loading: false,
           });
@@ -282,6 +277,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withTranslation(),
-  withNavigation,
   connect(mapStateToProps),
 )(ProductList);

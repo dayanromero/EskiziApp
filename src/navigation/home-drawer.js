@@ -21,7 +21,7 @@ const drawerStyle = {
 export default function HomeDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <Sidebar {...props} />}
+      drawerContent={props => <Sidebar {...props} />}
       initialRouteName={homeDrawer.home}
       screenOptions={{headerShown: false}}
       drawerStyle={drawerStyle}>

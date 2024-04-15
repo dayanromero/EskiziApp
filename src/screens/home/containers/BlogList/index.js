@@ -1,7 +1,7 @@
 import React from 'react';
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {connect} from 'react-redux';
-import {withNavigation} from '@react-navigation/compat';
+
 import {withTranslation} from 'react-i18next';
 import isEqual from 'lodash/isEqual';
 import split from 'lodash/split';
@@ -251,6 +251,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   connect(mapStateToProps),
-  withNavigation,
   withTranslation(),
 )(BlogList);

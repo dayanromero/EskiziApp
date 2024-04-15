@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {connect} from 'react-redux';
 import {ScrollView} from 'react-native';
 import {Header, ThemedView, ThemeConsumer} from 'src/components';
@@ -57,7 +57,7 @@ const withReduce = connect(mapStateToProps);
 
 export default compose(
   withReduce,
-  defaultPropsData,
-  getSingleData,
+  // defaultPropsData,
+  // getSingleData,
   withLoading,
 )(Page);

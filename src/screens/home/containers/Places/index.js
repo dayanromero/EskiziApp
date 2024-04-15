@@ -5,9 +5,8 @@ import Heading from 'src/containers/Heading';
 import Container from 'src/containers/Container';
 import {mainStack} from 'src/config/navigator';
 import fetch from 'src/utils/fetchEskizi';
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {connect} from 'react-redux';
-import {withNavigation} from '@react-navigation/compat';
 import {withTranslation} from 'react-i18next';
 
 import {getSiteConfig, languageSelector} from 'src/modules/common/selectors';
@@ -78,6 +77,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   connect(mapStateToProps),
-  withNavigation,
   withTranslation(),
 )(Slideshow);

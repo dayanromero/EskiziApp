@@ -7,7 +7,16 @@ import {isLineEndColumn} from 'src/utils/func';
 import {margin, padding} from 'src/components/config/spacing';
 const WIDTH_SCREEN = Dimensions.get('window').width;
 
-const Grid = ({data, loading, limit, width, height, widthView, col, navigationType}) => {
+const Grid = ({
+  data,
+  loading,
+  limit,
+  width,
+  height,
+  widthView,
+  col,
+  navigationType,
+}) => {
   const separator = padding.small;
   const column = col > 0 ? col : 1;
   const paddingSeparator = separator * (column - 1);
@@ -23,7 +32,7 @@ const Grid = ({data, loading, limit, width, height, widthView, col, navigationTy
             marginHorizontal: -separator / 2,
           },
         ]}>
-        {listData.map(value=> (
+        {listData.map(value => (
           <View
             key={value}
             style={[
@@ -35,14 +44,11 @@ const Grid = ({data, loading, limit, width, height, widthView, col, navigationTy
                 marginBottom: margin.small + margin.big,
               },
             ]}>
-            <ProductItemLoading
-              width={widthImage}
-              height={heightImage}
-            />
+            <ProductItemLoading width={widthImage} height={heightImage} />
           </View>
         ))}
       </View>
-    )
+    );
   }
   return (
     <View

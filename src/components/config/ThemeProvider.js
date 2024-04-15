@@ -13,7 +13,7 @@ export default class ThemeProvider extends React.Component {
     };
   }
 
-  updateTheme = (updates) => {
+  updateTheme = updates => {
     this.setState(({theme}) => ({
       theme: deepmerge(theme, updates),
     }));
@@ -28,7 +28,7 @@ export default class ThemeProvider extends React.Component {
       this.setTheme(theme);
     }
   }
-  setTheme = (theme) => {
+  setTheme = theme => {
     this.setState({
       theme,
     });

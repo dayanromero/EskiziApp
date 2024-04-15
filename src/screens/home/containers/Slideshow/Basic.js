@@ -52,7 +52,7 @@ class SlideshowBasic extends Component {
       : widthComponent - 2 * padding.large;
     const heightView = (widthView * heightImage) / widthImage;
     const heightFooter =
-      fields.indicator || images.find((i) => i.enable_button) ? 25 : 0;
+      fields.indicator || images.find(i => i.enable_button) ? 25 : 0;
     const heightScroll = heightView + heightFooter;
 
     const autoplayDelay =
@@ -139,7 +139,7 @@ class SlideshowBasic extends Component {
           autoplayInterval={autoplayInterval}
           loop
           autoplay={fields.auto_play}
-          onSnapToItem={(index) => this.setState({pagination: index})}
+          onSnapToItem={index => this.setState({pagination: index})}
         />
         {fields.indicator && (
           <Pagination
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   language: languageSelector(state),
 });
 

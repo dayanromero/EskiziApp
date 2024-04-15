@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   ScrollView,
   View,
@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
-import {DrawerActions} from '@react-navigation/native';
-
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {ThemedView, Header, Icon} from 'src/components';
 import {IconHeader, Logo, CartIcon} from 'src/containers/HeaderComponent';
 import ModalHomePopup from 'src/containers/ModalHomePopup';
@@ -63,7 +62,7 @@ const containers = {
   divider: Divider,
 };
 
-const widthComponent = (spacing) => {
+const widthComponent = spacing => {
   if (!spacing) {
     return width;
   }
@@ -86,16 +85,16 @@ const widthComponent = (spacing) => {
   return width - marginLeft - marginRight - paddingLeft - paddingRight;
 };
 
-class HomeScreen extends React.Component {
-  componentDidMount() {
-    const {dispatch} = this.props;
-    this.getConfig();
-    dispatch(fetchCategories());
-  }
+const HomeScreen = ({dispatch, config, toggleSidebar, theme}) => {
+  const navigation = useNavigation();
 
-  getConfig = async () => {
+  useEffect(() => {
+    getConfig();
+    dispatch(fetchCategories());
+  }, []);
+
+  const getConfig = async () => {
     try {
-      const {dispatch} = this.props;
       // Fetch setting
       let settings = await fetchSetting();
       const {configs, templates, ...rest} = settings;
@@ -111,8 +110,7 @@ class HomeScreen extends React.Component {
     }
   };
 
-  renderContainer(config) {
-    // console.log('***', JSON.stringify(config));
+  const renderContainer = config => {
     const Container = containers[config.type];
     if (!Container) {
       return null;
@@ -122,49 +120,46 @@ class HomeScreen extends React.Component {
         <Container
           {...config}
           widthComponent={widthComponent(config.spacing)}
+          navigation={navigation}
         />
       </View>
     );
-  }
+  };
 
-  render() {
-    const {config, toggleSidebar, navigation, theme} = this.props;
-
-    return (
-      <ThemedView isFullView>
-        <Header
-          leftComponent={
-            toggleSidebar ? (
-              <IconHeader
-                name="align-left"
-                size={22}
-                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-              />
-            ) : null
-          }
-          centerComponent={<Logo />}
-          rightComponent={<CartIcon />}
-        />
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}>
-          {config.map((data) => this.renderContainer(data))}
-          <Places />
-        </ScrollView>
-        <ModalHomePopup />
-        <Pressable
-          style={styles.supportButton}
-          onPress={() =>
-            Linking.openURL(
-              `whatsapp://send?text=Hola vengo de Eskizi y necesito ayuda!&phone=${WHATSAPP_NUMBER}`,
-            )
-          }>
-          <Icon name={'whatsapp'} type="font-awesome" color={white} size={20} />
-        </Pressable>
-      </ThemedView>
-    );
-  }
-}
+  return (
+    <ThemedView isFullView>
+      <Header
+        leftComponent={
+          toggleSidebar ? (
+            <IconHeader
+              name="align-left"
+              size={22}
+              onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+            />
+          ) : null
+        }
+        centerComponent={<Logo />}
+        rightComponent={<CartIcon />}
+      />
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
+        {config.map(data => renderContainer(data))}
+        <Places navigation={navigation} />
+      </ScrollView>
+      <ModalHomePopup />
+      <Pressable
+        style={styles.supportButton}
+        onPress={() =>
+          Linking.openURL(
+            `whatsapp://send?text=Hola vengo de Eskizi y necesito ayuda!&phone=${WHATSAPP_NUMBER}`,
+          )
+        }>
+        <Icon name={'whatsapp'} type="font-awesome" color={white} size={20} />
+      </Pressable>
+    </ThemedView>
+  );
+};
 
 const styles = StyleSheet.create({
   supportButton: {
@@ -180,7 +175,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     config: dataConfigSelector(state),
     toggleSidebar: toggleSidebarSelector(state),

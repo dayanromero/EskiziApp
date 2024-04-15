@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {connect} from 'react-redux';
 
 import {useNavigation} from '@react-navigation/native';
@@ -27,13 +27,12 @@ import {withAddToCart} from 'src/hoc/hoc-add-to-card';
 
 import {SIMPLE} from 'src/config/product';
 
-const ItemDefault = React.memo((props) => {
+const ItemDefault = React.memo(props => {
   const {
     item,
     width,
     height,
     navigation,
-    dispatch,
     navigationType,
     theme,
     configs,
@@ -105,9 +104,13 @@ const ItemDefault = React.memo((props) => {
               <TouchableOpacity
                 style={styles.buttonAdd}
                 onPress={() => addCart(id)}>
-                {loading ? <ActivityIndicator size="small"/> : <Text h4 medium style={styles.textAdd}>
-                  +
-                </Text>}
+                {loading ? (
+                  <ActivityIndicator size="small" />
+                ) : (
+                  <Text h4 medium style={styles.textAdd}>
+                    +
+                  </Text>
+                )}
               </TouchableOpacity>
             )}
         </View>
@@ -200,7 +203,7 @@ ItemDefault.defaultProps = {
   navigationType: 'navigate',
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     configs: configsSelector(state),
   };
@@ -215,4 +218,4 @@ const ItemDefaultComponent = compose(
 export default function (props) {
   const navigation = useNavigation();
   return <ItemDefaultComponent navigation={navigation} {...props} />;
-};
+}
