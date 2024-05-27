@@ -1,7 +1,6 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 import {showMessage} from 'react-native-flash-message';
-import auth from '@react-native-firebase/auth';
 
 import {
   StyleSheet,
@@ -85,26 +84,13 @@ class ModalVerify extends React.Component {
 
       const {phone} = this.props;
       if (phone) {
-        const confirmation = await auth().signInWithPhoneNumber(phone);
-        if (confirmation && confirmation._verificationId) {
-          this.setState({
-            confirmation,
-            loadingResend: false,
-          });
-          showMessage({
-            message: 'Resend successfully',
-            type: 'success',
-            duration: 3000,
-          });
-        } else {
-          this.setState({
-            loadingResend: false,
-          });
-          showMessage({
-            message: 'Something wrong.',
-            type: 'danger',
-          });
-        }
+        this.setState({
+          loadingResend: false,
+        });
+        showMessage({
+          message: 'Something wrong.',
+          type: 'danger',
+        });
       } else {
         this.setState({
           loadingResend: false,

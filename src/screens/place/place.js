@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
+import withState from 'src/recompose/withState';
 import {connect} from 'react-redux';
 import merge from 'lodash/merge';
 import unescape from 'lodash/unescape';
@@ -26,7 +27,6 @@ import {IconHeader, TextHeader} from 'src/containers/HeaderComponent';
 import Rating from 'src/containers/Rating';
 import {defaultPropsData, getSingleData} from 'src/hoc/single-data';
 import {withLoading} from 'src/hoc/loading';
-import ImagesPlace from './containers/ImagesPlace';
 import {timeAgo} from 'src/utils/time';
 import {padding, margin, borderRadius} from 'src/components/config/spacing';
 import {changeLineHeight, changeColor} from 'src/utils/text-html';
@@ -304,7 +304,7 @@ const withReduce = connect(mapStateToProps);
 export default compose(
   withTranslation(),
   withReduce,
-  defaultPropsData,
-  getSingleData,
+  // defaultPropsData,
+  // getSingleData,
   withLoading,
 )(PlaceDetail);

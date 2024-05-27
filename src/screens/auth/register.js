@@ -2,7 +2,6 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import firebase from '@react-native-firebase/app';
 
 import {
   StyleSheet,
@@ -69,18 +68,9 @@ class RegisterScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        const {data} = this.state;
-        this.setState({
-          user,
-          data: {...data, phone_number: user.phoneNumber},
-        });
-      }
-      if (this.state.confirmResult && Platform.OS === 'android') {
-        this.register();
-      }
-    });
+    if (this.state.confirmResult && Platform.OS === 'android') {
+      this.register();
+    }
   }
 
   componentWillUnmount() {
@@ -104,10 +94,8 @@ class RegisterScreen extends React.Component {
     let payload = data;
     const {country_code} = data;
     if (enablePhoneNumber) {
-      const currentUser = firebase.auth().currentUser;
 
       const user_phone_number =
-        currentUser?._user?.phoneNumber ??
         formatPhoneWithCountryCode(data.phone_number, country_code);
       payload = Object.assign(data, {
         enable_phone_number: true,
@@ -143,15 +131,7 @@ class RegisterScreen extends React.Component {
           digits_phone: user_phone_number,
           type: 'register',
         });
-        if (!user) {
-          // Send Verify token
-          const confirmResult = await firebase
-            .auth()
-            .signInWithPhoneNumber(user_phone_number);
-          this.setState({
-            confirmResult,
-          });
-        } else {
+        if (user) {
           this.register();
         }
       } else {

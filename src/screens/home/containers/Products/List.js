@@ -9,7 +9,7 @@ const List = ({data, loading, limit, width, height, navigationType}) => {
 
   if (loading) {
     const listData = Array.from(Array(limit)).map((arg, index) => index);
-    return listData.map((value) => (
+    return listData.map(value => (
       <ProductItemLoading type="secondary" key={value} height={heightImage} />
     ));
   }

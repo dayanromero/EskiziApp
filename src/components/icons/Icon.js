@@ -12,7 +12,7 @@ import {
 import getIconType from '../helpers/getIconType';
 import {ViewPropTypes, withTheme} from '../config';
 
-const Icon = (props) => {
+const Icon = props => {
   const {
     type,
     name,

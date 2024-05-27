@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {withTranslation} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import {Text, Avatar, withTheme} from 'src/components';
 import Button from './Button';
@@ -10,7 +10,7 @@ import {padding, margin} from 'src/components/config/spacing';
 type Props = {
   icon: string,
   titleButton?: string,
-  clickButton?: (void) => {},
+  clickButton?: void => {},
   title: string,
   subTitle: string,
   avatarProps?: object,
@@ -27,8 +27,8 @@ const Empty = (props: Props) => {
     title,
     subTitle,
     avatarElement,
-    t,
   } = props;
+  const {t} = useTranslation();
 
   const nameButton = titleButton ? titleButton : t('common:text_shopping_now');
   const onPressButton = clickButton ? clickButton : () => {};
@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
 
 Empty.defaultProps = {};
 
-export default withTranslation()(withTheme(Empty));
+export default withTheme(Empty);

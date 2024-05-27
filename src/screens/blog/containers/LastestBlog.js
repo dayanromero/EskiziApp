@@ -1,5 +1,5 @@
 import React from 'react';
-import {withNavigation} from '@react-navigation/compat';
+
 import {useTranslation} from 'react-i18next';
 import unescape from 'lodash/unescape';
 import {
@@ -156,4 +156,4 @@ function LastestBlogLoading(props) {
 
 export {LastestBlogLoading};
 
-export default withNavigation(withTheme(LastestBlog));
+export default withTheme(LastestBlog);

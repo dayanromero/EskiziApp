@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {compose} from 'recompose';
+import {compose} from 'src/recompose/compose';
 import {connect} from 'react-redux';
 import merge from 'lodash/merge';
 import unescape from 'lodash/unescape';
@@ -190,9 +190,8 @@ const mapStateToProps = (state) => {
 const withReduce = connect(mapStateToProps);
 
 export default compose(
-  withTranslation(),
   withReduce,
-  defaultPropsData,
-  getSingleData,
+  // defaultPropsData,
+  // getSingleData,
   withLoading,
-)(BlogDetail);
+)(withTranslation()(BlogDetail));

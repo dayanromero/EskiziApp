@@ -1,5 +1,5 @@
 import React from 'react';
-import {withNavigation} from '@react-navigation/compat';
+
 import unescape from 'lodash/unescape';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Image, Text, ThemedView} from 'src/components';
@@ -73,4 +73,4 @@ ItemBlogRow.defaultProps = {
   height: 183,
 };
 
-export default withNavigation(ItemBlogRow);
+export default ItemBlogRow;

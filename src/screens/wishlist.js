@@ -17,7 +17,10 @@ import {
   dataWishListSelector,
 } from 'src/modules/product/selectors';
 
-import {wishListSelector, countWishListSelector} from 'src/modules/common/selectors';
+import {
+  wishListSelector,
+  countWishListSelector,
+} from 'src/modules/common/selectors';
 
 import {margin} from 'src/components/config/spacing';
 import {homeTabs} from 'src/config/navigator';
@@ -32,7 +35,7 @@ class WishListScreen extends React.Component {
     dispatch(fetchWishList(data));
   };
 
-  removeItem = (product_id) => {
+  removeItem = product_id => {
     const {dispatch} = this.props;
     dispatch(removeWishList(product_id));
   };
@@ -43,7 +46,7 @@ class WishListScreen extends React.Component {
       this.fetchData(wishList);
     }
   }
-  renderData = (data) => {
+  renderData = data => {
     const {t, navigation} = this.props;
     if (!data || data.length < 1) {
       return (
@@ -59,7 +62,7 @@ class WishListScreen extends React.Component {
     return (
       <SwipeListView
         useFlatList
-        keyExtractor={(item) => `${item.id}`}
+        keyExtractor={item => `${item.id}`}
         data={data}
         renderItem={({item, index}) => (
           <ProductItem
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: dataWishListSelector(state).toJS(),
   loading: loadingWishListSelector(state),
   wishList: wishListSelector(state).toJS(),

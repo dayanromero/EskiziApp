@@ -1,11 +1,9 @@
-import firebase from '@react-native-firebase/app';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import {LoginManager} from 'react-native-fbsdk';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {put, call, select, takeEvery} from 'redux-saga/effects';
 import {showMessage} from 'react-native-flash-message';
 import {handleError} from 'src/utils/error';
-import OneSignal from 'react-native-onesignal';
 
 import languages from 'src/locales';
 
@@ -51,11 +49,6 @@ async function signOut() {
   // Logout rest api
   await logout();
 
-  // Sign Out Firebase
-  if (method === 'otp') {
-    await firebase.auth().signOut();
-  }
-
   // Sign Out Google
   if (method === 'google') {
     await GoogleSignin.revokeAccess();
@@ -100,8 +93,6 @@ function* doLoginSuccess(token, user = {}, method = 'email') {
   yield call(NavigationService.navigate, rootSwitch.main);
   yield call(AsyncStorage.setItem, 'token', token);
   yield call(AsyncStorage.setItem, 'method', method);
-
-  OneSignal.sendTag('user_id', user.ID);
 }
 
 /**

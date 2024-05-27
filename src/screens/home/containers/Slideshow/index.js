@@ -23,7 +23,7 @@ class Slideshow extends React.Component {
         <SlideshowCreative
           fields={fields}
           widthComponent={widthComponent}
-          clickGoPage={(data) => action(data)}
+          clickGoPage={data => action(data)}
         />
       );
     }
@@ -32,7 +32,7 @@ class Slideshow extends React.Component {
       <SlideshowBasic
         fields={fields}
         widthComponent={widthComponent}
-        clickGoPage={(data) => action(data)}
+        clickGoPage={data => action(data)}
       />
     );
   }

@@ -1,5 +1,6 @@
-import {branch, renderComponent} from 'recompose';
+import branch from 'src/recompose/branch';
 import Loading from 'src/components/Loading';
+import {renderComponent} from 'src/recompose/renderComponent';
 
 const isLoading = ({loading}) => loading;
 

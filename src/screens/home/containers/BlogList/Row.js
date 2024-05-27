@@ -1,12 +1,15 @@
 import React from 'react';
 
 import {ScrollView, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
 import ItemBlogRow from 'src/screens/blog/containers/ItemBlogRow';
 import ItemBlogRowLoading from 'src/screens/blog/containers/ItemBlogRowLoading';
 
 import {padding} from 'src/components/config/spacing';
 
 const BlogRow = ({data, loading, limit, width, height, boxed, tz}) => {
+  const navigation = useNavigation();
   if (loading) {
     const listData = Array.from(Array(limit)).map((arg, index) => index);
     return (
@@ -47,6 +50,7 @@ const BlogRow = ({data, loading, limit, width, height, boxed, tz}) => {
                   ? padding.large
                   : 0,
             }}
+            navigation={navigation}
           />
         ))}
       </ScrollView>

@@ -22,6 +22,7 @@ DerivedData
 *.xcuserstate
 ios/Podfile.lock
 ios/Pods
+ios/.xcode.env.local
 
 # Android/IntelliJ
 #
@@ -30,6 +31,7 @@ build/
 .gradle
 local.properties
 *.iml
+*.hprof
 
 # node.js
 #
@@ -59,3 +61,4 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+/vendor/bundle/

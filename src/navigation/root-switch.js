@@ -1,6 +1,7 @@
 import React from 'react';
+import {View, Text} from 'react-native';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {rootSwitch} from 'src/config/navigator';
 
@@ -20,7 +21,7 @@ import {connect} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {SUPPORT_DIGITS_PLUGIN} from 'src/config/auth';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 function RootStack({loading, isGettingStart, isLogin, loginRequired}) {
   /**
@@ -29,6 +30,7 @@ function RootStack({loading, isGettingStart, isLogin, loginRequired}) {
   if (!loading) {
     SplashScreen.hide();
   }
+
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {loading ? (
@@ -67,7 +69,7 @@ function RootStack({loading, isGettingStart, isLogin, loginRequired}) {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isGettingStart: isGettingStartSelector(state),
     isLogin: isLoginSelector(state),

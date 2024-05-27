@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, Dimensions, Text} from 'react-native';
+import {ScrollView, View, Dimensions} from 'react-native';
 import ProductItem from 'src/containers/ProductItem';
 import ProductItemLoading from 'src/containers/ProductItem/Loading';
 import {padding} from 'src/components/config/spacing';
@@ -26,10 +26,7 @@ const Carousel = ({
   if (loading) {
     const listData = Array.from(Array(limit)).map((arg, index) => index);
     return (
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {listData.map(value => (
           <View
             key={value}
@@ -44,7 +41,7 @@ const Carousel = ({
           </View>
         ))}
       </ScrollView>
-    )
+    );
   }
   return (
     <ScrollView

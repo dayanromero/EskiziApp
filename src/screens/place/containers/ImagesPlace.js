@@ -1,5 +1,4 @@
 import React from 'react';
-import {withNavigation} from '@react-navigation/compat';
 import {useTranslation} from 'react-i18next';
 import unescape from 'lodash/unescape';
 import {
@@ -99,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(withTheme(ImagesPlace));
+export default withTheme(ImagesPlace);
